@@ -9,6 +9,9 @@ from timeit import default_timer as timer
 
 import random
 
+proofs = {} #set proof to empty dict for easy key value 
+max_proof = 0 #starts at 0
+
 
 def proof_of_work(last_proof):
     """
@@ -23,11 +26,29 @@ def proof_of_work(last_proof):
     start = timer()
 
     print("Searching for next proof")
-    proof = 0
+    
     #  TODO: Your code here
+    global max_proof
 
-    print("Proof found: " + str(proof) + " in " + str(timer() - start))
-    return proof
+    last_hash = hashlib.sha256(str(last_proof).encode()).hexdigest()
+
+    must_match = last_hash[-6:]
+    
+    if must_match in proofs:
+        print("Proof found" + str(proofs[must_match]) + " in " + str(timer() - start))
+        return proofs[must_match]
+
+    proof = max_proof
+
+    while True:
+        if valid_proof(last_hash, proof) is True:
+            print("Proof found: " + str(proof) + " in " + str(timer() - start))
+            return proof
+        else:
+            proofs[hashlib.sha256(str(proof).encode()).hexdigest()[:6]] = proof
+            max_proof += 1
+            proof += 1
+    
 
 
 def valid_proof(last_hash, proof):
@@ -40,7 +61,9 @@ def valid_proof(last_hash, proof):
     """
 
     # TODO: Your code here!
-    pass
+    must_match = str(last_hash)[-6:]
+    potential_match = hashlib.sha256(str(proof).encode()).hexdigest()[:6]
+    return must_match == potential_match
 
 
 if __name__ == '__main__':
@@ -55,6 +78,7 @@ if __name__ == '__main__':
     # Load or create ID
     f = open("my_id.txt", "r")
     id = f.read()
+    id = "Anna"
     print("ID is", id)
     f.close()
 

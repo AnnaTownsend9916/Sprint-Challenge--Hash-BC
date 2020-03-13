@@ -26,9 +26,22 @@ Explain in detail the workings of a dynamic array:
 * What is the runtime complexity to access an array, add or remove from the front, and add or remove from the back?
 * What is the worse case scenario if you try to extend the storage size of a dynamic array?
 
+ ##ANSWERS ARE IN (( )) for easier readability :) ##
+
+#((Dynamic Arrays automatically resize themselves, so like allows you to keep adding stuff to your list and it will keep making room for it. To add or remove to the front is 0(n) and to add or remove from the back is 0(1), worst case scenario is again 0(1)))
+
+
 Explain how a blockchain is structured. What are the blocks, what is the chain? How is the data organized?
+
+
+#((Blockchain is a datastructure used for many things. An example would be a bank holding your bankstatement with all recent transactions, we would HOPE that there wasnt some random banker sitting in a closet keeping tabs on our purchases and we also wouldnt want to worry about keeping tabs on if they were holding the right information. Blockchain allows transactions to be held within a blockt that is chained to another block of transactions and so on keeping a cool track for you amongst other things you can use it for))
  
 Explain how proof of work functions. How does it operate. How does this protect the chain from attack. What kind of attack is possible?
+
+#(( this algorithm is used to confirm transactions and produce new blocks to the chain. With PoW, miners compete against each other to complete transactions on the network and get rewarded.))
+
+
+
 
 ## Project Set Up
 
